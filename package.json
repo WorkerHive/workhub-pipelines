@@ -1,0 +1,23 @@
+{
+  "name": "workhub-pipelines",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WorkerHive/workhub-pipelines.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WorkerHive/workhub-pipelines/issues"
+  },
+  "homepage": "https://github.com/WorkerHive/workhub-pipelines#readme",
+  "dependencies": {
+    "dockerode": "^3.2.1"
+  }
+}

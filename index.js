@@ -2,7 +2,6 @@ import fs from 'fs';
 import Pipeline from './lib/pipeline.js';
 import DockerStore from './lib/docker.js';
 
-let imageStore = DockerStore();
 
 const readPipeline = (dir, imageStore) => {
   let pipeline = fs.readFileSync(`${dir}/converter.spec.json`, 'utf8')
@@ -14,7 +13,8 @@ const readPipeline = (dir, imageStore) => {
   }
 }
 
-export default function PipelineManager(imageStore){
+export default function PipelineManager(){
+  let imageStore = DockerStore();
 
   let pipelines = [
     readPipeline('./pipelines/stp2glb', imageStore)
@@ -27,11 +27,12 @@ export default function PipelineManager(imageStore){
     },
     getPipeline: (id) => {
       return pipelines.filter((a) => a.id == id)[0]
+    },
+    getPipelineFormat: (inFormat, outFormat) => {
+      let pipes = pipelines.filter((a) => 
+        a.sourceFormat.toLowerCase() == inFormat.toLowerCase() &&
+        outFormat.toLowerCase() == a.targetFormat.toLowerCase())
+      return pipes.length > 0 ? pipes[0] : null;
     }
   }
 }
-
-let p = PipelineManager(imageStore).getPipeline('workhub/stp2glbpacker')
-
-p.workers[2].startWorker()
-console.log(p)

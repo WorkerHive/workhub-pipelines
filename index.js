@@ -1,26 +1,15 @@
-import fs from 'fs';
-import path from 'path';
 import Pipeline from './lib/pipeline.js';
 import DockerStore from './lib/docker.js';
 
+import STP2GLB from './pipelines/stp2glb/converter.spec.js';
 
-const readPipeline = (dir, imageStore, messageQueue) => {
-  let pipeline = fs.readFileSync(`${dir}/converter.spec.json`, 'utf8')
-  try{
-   pipeline = Pipeline(JSON.parse(pipeline), imageStore, messageQueue)
-   return pipeline;
-  }catch(e){
-    console.log(e)
-  }
-}
 
 export default function PipelineManager(messageQueue){
   let imageStore = DockerStore();
 
   let pipelines = [
-    readPipeline(path.resolve('') + '/pipelines/stp2glb', imageStore, messageQueue)
+    Pipeline(STP2GLB, imageStore, messageQueue)
   ];
-
 
   return {
     getPipelines: () => {

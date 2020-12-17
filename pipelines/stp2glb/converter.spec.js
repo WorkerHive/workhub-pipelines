@@ -1,4 +1,4 @@
-{
+export default {
   "id": "workhub/stp2glbpacker",
   "name": "STEP to GLB + Packer",
   "sourceFormat": "stp",

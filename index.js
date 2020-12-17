@@ -30,8 +30,8 @@ export default function PipelineManager(){
     },
     getPipelineFormat: (inFormat, outFormat) => {
       let pipes = pipelines.filter((a) => 
-        a.sourceFormat.toLowerCase() == inFormat.toLowerCase() &&
-        outFormat.toLowerCase() == a.targetFormat.toLowerCase())
+        (!inFormat || a.sourceFormat.toLowerCase() == inFormat.toLowerCase()) &&
+        (!outFormat || outFormat.toLowerCase() == a.targetFormat.toLowerCase()))
       return pipes.length > 0 ? pipes[0] : null;
     }
   }

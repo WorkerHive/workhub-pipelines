@@ -12,9 +12,7 @@ export default function PipelineManager(messageQueue, watchFn){
   ];
 
   pipelines.map((x) => {
-    x.watchPipeline((data) => {
-      watchFn(data)
-    })
+    x.watchPipeline(watchFn)
   })
 
   return {

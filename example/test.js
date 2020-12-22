@@ -15,6 +15,8 @@ MQ({host: '172.17.0.2', user: 'guest', pass: 'guest'}).then(async (mq) => {
     //await pipeline.attachNetwork()
     
     await pipeline.runPipeline('test', 'tester')
+    await pipeline.runPipeline('test', 'tester')
+    await pipeline.runPipeline('test', 'tester')
 
     /*if(await workers[0].isInstalled() && !await workers[0].isRunning()){
         console.log(workers[0].getConfigs('rabbitmq:rabbit', 'rabbit1'))

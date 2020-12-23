@@ -4,8 +4,8 @@ import DockerStore from './lib/docker.js';
 import STP2GLB from './pipelines/stp2glb/converter.spec.js';
 
 
-export default function PipelineManager(messageQueue, watchFn){
-  let imageStore = DockerStore();
+export default function PipelineManager(swarmKey, messageQueue, watchFn){
+  let imageStore = DockerStore(swarmKey);
 
   let pipelines = [
     Pipeline(STP2GLB, imageStore, messageQueue)
@@ -16,6 +16,7 @@ export default function PipelineManager(messageQueue, watchFn){
   })
 
   return {
+    swarmKey: swarmKey,
     getPipelines: () => {
       return pipelines;
     },
